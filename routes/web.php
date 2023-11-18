@@ -2,6 +2,8 @@
 
 use App\Http\Controllers\AuthenticatedController;
 use App\Http\Controllers\BlogsController;
+use App\Http\Controllers\BlogsTypeController;
+use App\Http\Controllers\HomeController;
 use App\Http\Controllers\UsersController;
 use App\Models\blog;
 use Illuminate\Support\Facades\Route;
@@ -32,25 +34,34 @@ Route::get('/test', function () {
 // Route::get('/users/edit/{id?}/{name?}', function ($id = null, $name = null) {
 //     return view('users.edit', compact('id', 'name'));
 // })->name('users.edit');
-
-
+ 
+Route::get('/', [HomeController::class, 'index'])->name('index');
+ 
 Route::get('/login', [AuthenticatedController::class, 'index'])->name('login');
 Route::post('check-login', [AuthenticatedController::class, 'CheckLogin'])->name('check.login'); 
  
 Route::middleware(['is_user'])->group(function () {
     Route::post('logout', [AuthenticatedController::class, 'logout'])->name('logout');
-    
+  
     Route::get('/users', [UsersController::class, 'index'])->name('users.index');
     Route::get('/users/create', [UsersController::class, 'create'])->name('users.create');
     Route::get('/users/edit/{id?}', [UsersController::class, 'edit'])->name('users.edit');
  
     Route::get('/blogs', [BlogsController::class, 'index'])->name('blogs.index');
     Route::get('/blogs/create', [BlogsController::class, 'create'])->name('blogs.create');
-    Route::get('/blogs/edit/{id?}', [BlogsController::class, 'edit'])->name('blogs.edit');
- 
+    Route::get('/blogs/edit/{id?}', [BlogsController::class, 'edit'])->name('blogs.edit'); 
     Route::post('save-blogs', [BlogsController::class, 'SaveBlogs'])->name('save.blogs');
     Route::post('update-blogs', [BlogsController::class, 'UpdateBlogs'])->name('update.blogs');
     Route::post('delete-blogs', [BlogsController::class, 'DeleteBlogs'])->name('delete.blogs');
+
+
+    Route::get('/blogs-type', [BlogsTypeController::class, 'index'])->name('blogs.type.index');
+    Route::get('/blogs-type/create', [BlogsTypeController::class, 'create'])->name('blogs.type.create');
+    Route::get('/blogs-type/edit/{id?}', [BlogsTypeController::class, 'edit'])->name('blogs.type.edit');
+   
+    Route::post('save-blogs-type', [BlogsTypeController::class, 'SaveBlogsType'])->name('save.blogs.type');
+    Route::post('update-blogs-type', [BlogsTypeController::class, 'UpdateBlogsType'])->name('update.blogs.type');
+    Route::post('delete-blogs-type', [BlogsTypeController::class, 'DeleteBlogsType'])->name('delete.blogs.type');
 }); 
  
 

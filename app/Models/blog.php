@@ -12,11 +12,13 @@ class blog extends Model
     use HasFactory;
     protected $fillable = [
         "title",
+        "type_id",
         "title_sub",
         "description",
         "image_name",
         "file_pdf_name",
         "link_youtube",
+        "summarynote",
 
         "meta_title",
         "meta_description",
@@ -26,6 +28,11 @@ class blog extends Model
         "status",
         "user_id"
     ];
+
+    public function rType(): HasOne
+    {
+        return $this->hasOne(blog_type::class, 'id', 'type_id');
+    }
 
     public function rUser(): HasOne
     {

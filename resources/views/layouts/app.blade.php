@@ -101,6 +101,12 @@
                                 <span> จัดการ Blog </span>
                             </a>
                         </li>
+                        <li>
+                            <a href="{{ route('blogs.type.index') }}">
+                                <i class="fe-file-text"></i>
+                                <span> จัดการ Blog Type</span>
+                            </a>
+                        </li>
                     </ul>
                 </div>
                 <div class="clearfix"></div>
@@ -134,6 +140,13 @@
     <script src="{{ asset('template/Admin/vertical/dist/assets/js/vendor.min.js') }}"></script>
     <script src="{{ asset('template/Admin/vertical/dist/assets/js/app.min.js') }}"></script>
     @stack('scripts')
+    <script>
+        $(".delete-confirm").click(function() {
+            if (!confirm("ยืนยันการลบข้อมูลหรือไม : การลบข้อมูลจะไม่สามารถนำข้อมูลกลับได้ !")) {
+                return false;
+            }
+        });
+    </script>
 </body>
 
 </html>

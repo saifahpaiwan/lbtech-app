@@ -13,6 +13,7 @@ class BlogSeeder extends Seeder
     {
         DB::table('blogs')->insert([ 
             "title" => " Blog Test 101",
+            "type_id" => "1",
             "title_sub" => "Blog Sub 101",
             "description" => "Blog Description 101",
             "image_name" => "blog_img.jpg",
